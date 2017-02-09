@@ -1,6 +1,6 @@
 # One Way OpenLayers
 
-One Way OpenLayers is a JavaScript library for rendering maps with OpenLayers.
+One Way OpenLayers is a JavaScript library for rendering maps with a one way data flow.
 
 - **Declarative:** One Way OpenLayers makes it easy to create interactive maps. Declare the state of the map as a JavaScript object and One Way OpenLayers will efficiently update and render just the right components when your data changes.
 - **Unidirectional data flow:** One Way OpenLayers evolves the "Data down, actions up" ideas of React. Declarative updates make your code more predictable, simpler to understand, and easier to debug.
