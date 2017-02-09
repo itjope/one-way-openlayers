@@ -1,5 +1,5 @@
-import OneWayOL3 from '../lib'
-import parseSource from '../lib/parseSource'
+import OneWayOL3 from '../src'
+import parseSource from '../src/parseSource'
 import XYZ from 'ol/source/xyz'
 import ImageWMS from 'ol/source/imagewms'
 import imageWmsConfig from './configs/imageWms'

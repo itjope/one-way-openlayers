@@ -3,11 +3,7 @@ const webpack = require('webpack')
 const path = require('path')
 
 const config = {
-  entry: './src/index.js',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js'
-  },
+  entry: './examples/index.js',
   module: {
     rules: [
       {
@@ -22,7 +18,7 @@ const config = {
   },
   plugins: [
     //new webpack.optimize.UglifyJsPlugin(),
-    new HtmlWebpackPlugin({template: './src/index.html'})
+    new HtmlWebpackPlugin({template: './examples/index.html'})
   ]
 }
 

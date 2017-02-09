@@ -1,4 +1,4 @@
-import OneWayOL3 from '../lib'
+import OneWayOL3 from '../src'
 import View from 'ol/view'
 import cloneDeep from 'lodash/cloneDeep'
 
