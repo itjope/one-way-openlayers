@@ -8,7 +8,7 @@ One Way OpenLayers is a JavaScript library for rendering maps with OpenLayers.
 
 ## Examples
 
-We have several examples [in the examples folder](https://github.com/itjope/one-way-openlayers/examples). Here is the first one to get you started:
+We have several examples [in the examples folder](https://github.com/itjope/one-way-openlayers/tree/master/examples). Here is the first one to get you started:
 
 ```javascript
 import OneWayOpenLayers from 'one-way-openlayers'
