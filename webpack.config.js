@@ -1,6 +1,6 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
-const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 
 const config = {
   entry: './examples/index.js',
@@ -17,8 +17,8 @@ const config = {
     ]
   },
   plugins: [
-    //new webpack.optimize.UglifyJsPlugin(),
-    new HtmlWebpackPlugin({template: './examples/index.html'})
+    new HtmlWebpackPlugin({template: './examples/index.html'}),
+    new CaseSensitivePathsPlugin()
   ]
 }
 

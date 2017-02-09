@@ -1,4 +1,13 @@
-// Karma configuration
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
+const webpackConfig = require('./webpack.config')
+
+const parseWebpackConfig = (config) => {
+  return {
+    module: config.module,
+    plugins: config.plugins
+  }
+}
+
 module.exports = function(config) {
   config.set({
     browsers: ['PhantomJS'],
@@ -11,22 +20,9 @@ module.exports = function(config) {
       'test/*.test.js': ['webpack'],
       'test/**/*.test.js': ['webpack']
     },
-    webpack: {
-      module: {
-        rules: [
-          {
-            test: /\.js$/,
-            exclude: /(node_modules)/,
-            loader: 'babel-loader',
-            query: {
-              presets: ['es2015']
-            }
-          }
-        ]
-      }
-    },
+    webpack: parseWebpackConfig(webpackConfig),
     webpackMiddleware: {
       stats: 'errors-only'
     }
-  });
-};
+  })
+}

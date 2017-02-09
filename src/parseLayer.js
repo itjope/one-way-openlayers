@@ -4,7 +4,7 @@ import assign from 'lodash/assign'
 import parseSource from './parseSource'
 import Tile from 'ol/layer/tile'
 import Vector from 'ol/layer/vector'
-import Image from 'ol/layer/Image'
+import Image from 'ol/layer/image'
 
 const createLayer = (layerClass: Class<*>, layerOptions: Layer): Object => {
   return new layerClass(assign({}, layerOptions, {
