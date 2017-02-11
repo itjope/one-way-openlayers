@@ -1,4 +1,4 @@
-import OneWayOL3 from '../src'
+import OneWayOpenLayers from '../src'
 import OLProj from 'ol/proj'
 
 
