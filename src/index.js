@@ -5,7 +5,6 @@ import assign from 'lodash/assign'
 import OLMap from 'ol/map'
 import OLView from 'ol/view'
 import OLProj from 'ol/proj'
-import clondeDeep from 'lodash/cloneDeep'
 import proj4Defs from './proj4Definitions'
 import renderLayers from './renderLayers'
 import renderView from './renderView'
@@ -33,7 +32,8 @@ const OneWayOpenLayers = (options: Options) => {
     map: new OLMap(assign({}, defaults, options, {
       view: new OLView(defaults.props.view)
     })),
-    props: defaults.props
+    props: defaults.props,
+    eventReferences: {}
   }
 
   const mergeProps = (prevProps: Props, props: Props) : Props => assign({}, state.props, cloneDeep(props))
@@ -46,7 +46,7 @@ const OneWayOpenLayers = (options: Options) => {
       renderLayers(state.map, state.props.layers, props.layers)
     }
     if (props.events) {
-      updateEvents(state.map, state.props.events, props.events)
+      updateEvents(state.map, state.eventReferences, state.props.events, props.events)
     }
 
     state.props = mergeProps(state.props, props)
@@ -54,6 +54,7 @@ const OneWayOpenLayers = (options: Options) => {
 
   return {
     render,
+    state,
     map: state.map
   }
 }

@@ -34,7 +34,8 @@ export type Options = {
 
 export type State = {
   map: Map,
-  props: Props
+  props: Props,
+  eventReferences: MapOfEventReferences
 }
 
 export type Events = Object
@@ -49,6 +50,10 @@ export type Diff = {
   type: 'add' | 'update' | 'remove',
   changes: Change[]
 }
+
+export type EventReference = Object
+
+export type MapOfEventReferences = {[key: string]: EventReference };
 
 export type Map = {
   addControl: Function,
