@@ -1,6 +1,5 @@
 import OneWayOpenLayers from '../src'
 
-
 const config = {
   view: {
     center: [0, 0],
@@ -24,4 +23,5 @@ const config = {
 const map = OneWayOpenLayers({
   target: 'map'
 })
+
 map.render(config)

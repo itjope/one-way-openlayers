@@ -33,7 +33,7 @@ export type Options = {
 }
 
 export type State = {
-  map: Function,
+  map: Map,
   props: Props
 }
 
@@ -48,4 +48,52 @@ export type Change = {
 export type Diff = {
   type: 'add' | 'update' | 'remove',
   changes: Change[]
+}
+
+export type Map = {
+  addControl: Function,
+  addInteraction: Function,
+  addLayer: Function,
+  addOverlay: Function,
+  changed: Function,
+  dispatchEvent: Function,
+  forEachFeatureAtPixel: Function,
+  forEachLayerAtPixel: Function,
+  get: Function,
+  getControls: Function,
+  getCoordinateFromPixel: Function,
+  getEventCoordinate: Function,
+  getEventPixel: Function,
+  getInteractions: Function,
+  getKeys: Function,
+  getLayerGroup: Function,
+  getLayers: Function,
+  getOverlayById: Function,
+  getOverlays: Function,
+  getPixelFromCoordinate: Function,
+  getProperties: Function,
+  getRevision: Function,
+  getSize: Function,
+  getTarget: Function,
+  getTargetElement: Function,
+  getView: Function,
+  getViewport: Function,
+  hasFeatureAtPixel: Function,
+  on: Function,
+  once: Function,
+  removeControl: Function,
+  removeInteraction: Function,
+  removeLayer: Function,
+  removeOverlay: Function,
+  render: Function,
+  renderSync: Function,
+  set: Function,
+  setLayerGroup: Function,
+  setProperties: Function,
+  setSize: Function,
+  setTarget: Function,
+  setView: Function,
+  un: Function,
+  unset: Function,
+  updateSize: Function
 }
