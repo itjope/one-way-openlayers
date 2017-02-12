@@ -6,7 +6,7 @@ import xyzConfig  from './configs/xyz'
 describe("Events", function() {
   it("Should register a click event handler", () => {
     const oneWayOpenLayers = OneWayOpenLayers()
-    const eventReferences = oneWayOpenLayers.state.eventReferences
+    const eventReferences = oneWayOpenLayers.getEvents()
     const onClick = () => undefined
     const config = assign({}, cloneDeep(xyzConfig), {
       events: {
@@ -19,7 +19,7 @@ describe("Events", function() {
 
   it("Should remove all click event handlers", () => {
     const oneWayOpenLayers = OneWayOpenLayers()
-    const eventReferences = oneWayOpenLayers.state.eventReferences
+    const eventReferences = oneWayOpenLayers.getEvents()
     const onClick = () => undefined
     const onMoveEnd = () => undefined
 
@@ -44,7 +44,7 @@ describe("Events", function() {
 
   it("Should remove one click event handlers", () => {
     const oneWayOpenLayers = OneWayOpenLayers()
-    const eventReferences = oneWayOpenLayers.state.eventReferences
+    const eventReferences = oneWayOpenLayers.getEvents()
     const onClick = () => undefined
     const onMoveEnd = () => undefined
 

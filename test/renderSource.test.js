@@ -8,6 +8,6 @@ describe("Render source", function() {
   it("Should render a xyz source", function() {
     const oneWayOpenLayers = OneWayOpenLayers()
     oneWayOpenLayers.render(xyzConfig)
-    expect(oneWayOpenLayers.map.getLayers().getArray()[0].getSource()).toEqual(jasmine.any(XYZ))
+    expect(oneWayOpenLayers.getMap().getLayers().getArray()[0].getSource()).toEqual(jasmine.any(XYZ))
   })
 })

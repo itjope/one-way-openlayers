@@ -10,7 +10,7 @@ import renderLayers from './renderLayers'
 import renderView from './renderView'
 import updateEvents from './updateEvents'
 
-import type {Options, Props, State, View, Layer, Map} from './types'
+import type {Options, Props, State, View, Layer, Map, MapOfEventReferences} from './types'
 
 proj4.defs(proj4Defs)
 OLProj.setProj4(proj4)
@@ -38,6 +38,10 @@ const OneWayOpenLayers = (options: Options) => {
 
   const mergeProps = (prevProps: Props, props: Props) : Props => assign({}, state.props, cloneDeep(props))
 
+  const getMap = (): Map => state.map
+
+  const getEvents = (): MapOfEventReferences => state.eventReferences
+
   const render = (props: Props) : void => {
     if (props.view) {
       renderView(state.map, state.props.view, props.view)
@@ -54,8 +58,8 @@ const OneWayOpenLayers = (options: Options) => {
 
   return {
     render,
-    state,
-    map: state.map
+    getMap,
+    getEvents
   }
 }
 
