@@ -4,8 +4,13 @@ export type View = {
   zoom: number
 }
 
+export type Format = {
+  type: 'MVT'
+}
+
 export type Source = {
-  'type': 'BingMaps' | 'CartoDB' | 'Cluster' | 'Image' | 'ImageArcGISRest' | 'ImageCanvas' | 'ImageMapGuide' | 'ImageStatic' | 'ImageVector' | 'ImageWMS' | 'OSM' | 'Raster' | 'Source' | 'Stamen' | 'Tile' | 'TileArcGISRest' | 'TileDebug' | 'TileImage' | 'TileJSON' | 'TileUTFGrid' | 'TileWMS' | 'UrlTile' | 'Vector' | 'VectorTile' | 'WMTS' | 'XYZ' | 'Zoomify'
+  'type': 'BingMaps' | 'CartoDB' | 'Cluster' | 'Image' | 'ImageArcGISRest' | 'ImageCanvas' | 'ImageMapGuide' | 'ImageStatic' | 'ImageVector' | 'ImageWMS' | 'OSM' | 'Raster' | 'Source' | 'Stamen' | 'Tile' | 'TileArcGISRest' | 'TileDebug' | 'TileImage' | 'TileJSON' | 'TileUTFGrid' | 'TileWMS' | 'UrlTile' | 'Vector' | 'VectorTile' | 'WMTS' | 'XYZ' | 'Zoomify',
+  format: Format
 }
 
 export type VectorLayer = {
@@ -18,7 +23,12 @@ export type TileLayer = {
   source: Source
 }
 
-export type Layer = VectorLayer | TileLayer
+export type VectorTile = {
+  'type': 'VectorTile',
+  source: Source
+}
+
+export type Layer = VectorLayer | TileLayer | VectorTile
 
 export type Props = {
   view: View,

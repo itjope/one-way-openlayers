@@ -5,6 +5,7 @@ import parseSource from './parseSource'
 import Tile from 'ol/layer/tile'
 import Vector from 'ol/layer/vector'
 import Image from 'ol/layer/image'
+import VectorTile from 'ol/layer/vectortile'
 
 const createLayer = (layerClass: Class<*>, layerOptions: Layer): Object => {
   return new layerClass(assign({}, layerOptions, {
@@ -20,6 +21,8 @@ const parseLayer = (layer: Layer): Object => {
       return createLayer(Tile, layer)
     case 'Image':
       return createLayer(Image, layer)
+    case 'VectorTile':
+      return createLayer(VectorTile, layer)
     default:
       console.warn('No layer parser found for', layer.type)
       return {}
