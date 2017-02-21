@@ -7,24 +7,25 @@ import Vector from 'ol/layer/vector'
 import Image from 'ol/layer/image'
 import VectorTile from 'ol/layer/vectortile'
 
-const createLayer = (layerClass: Class<*>, layerOptions: Layer): Object => {
+const layerCreator = (layerOptions: Layer): Function => (layerClass: Class<*>): Object => {
   return new layerClass(assign({}, layerOptions, {
     source: parseSource(layerOptions.source)
   }))
 }
 
-const parseLayer = (layer: Layer): Object => {
-  switch (layer.type) {
+const parseLayer = (layerOptions: Layer): Object => {
+  const createLayer = layerCreator(layerOptions)
+  switch (layerOptions.type) {
     case 'Vector':
-      return createLayer(Vector, layer)
+      return createLayer(Vector)
     case 'Tile':
-      return createLayer(Tile, layer)
+      return createLayer(Tile)
     case 'Image':
-      return createLayer(Image, layer)
+      return createLayer(Image)
     case 'VectorTile':
-      return createLayer(VectorTile, layer)
+      return createLayer(VectorTile)
     default:
-      console.warn('No layer parser found for', layer.type)
+      console.warn('No layer parser found for', layerOptions.type)
       return {}
   }
 }
