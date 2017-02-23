@@ -4,14 +4,33 @@ import GeoJSON from 'ol/format/geojson'
 import changesets from 'diff-json'
 import parseLayer from './parseLayer'
 
-import type {Layer, Change, Diff, Map} from './types'
+import type {Layer, Change, Diff, Map, CRS} from './types'
+
+const getDefaultDataProjection = () => 'EPSG:4326'
+
+const getProjectionFromCRS = (crs: CRS) => {
+  if (crs.type && crs.properties && crs.properties.code) {
+    return `${crs.type}:${crs.properties.code}`
+  } else {
+    console.warn(crs, 'Is an invalid CRS definition. Example of valid definition: ', {
+      'type': 'EPSG',
+      'properties': {
+         'code': 4326
+      }
+    })
+    return getDefaultDataProjection()
+  }
+}
 
 const getFeaturesFromGeoJson = (geoJson: ?Object, featureProjection: string | Object): Object[] => {
   if (!geoJson) return []
   const format = new GeoJSON()
+
   return format.readFeatures(geoJson, {
-    featureProjection: featureProjection
+    featureProjection: featureProjection,
+    dataProjection: geoJson.crs ? getProjectionFromCRS(geoJson.crs) : getDefaultDataProjection()
   })
+
 }
 
 const getLayerFromChange = (layers: Layer[]): Function => (change: Change): Layer => {

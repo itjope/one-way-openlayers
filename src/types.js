@@ -113,3 +113,10 @@ export type Map = {
   unset: Function,
   updateSize: Function
 }
+
+export type CRS = {
+  type: string,
+  properties: {
+    code: number
+  }
+}
