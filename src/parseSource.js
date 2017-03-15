@@ -10,9 +10,10 @@ import VectorTile from 'ol/source/vectortile'
 import Vector from 'ol/source/vector'
 
 import parseFormat from './parseFormat'
+import parseTileGrid from './parseTileGrid'
 
 const sourceCreator = (sourceOptions: Source): Function => (sourceClass: Class<*>): Object => {
-  const tileGrid = sourceOptions.tileGrid ? new TileGrid(sourceOptions.tileGrid) : undefined
+  const tileGrid = sourceOptions.tileGrid ? parseTileGrid(sourceOptions.tileGrid) : undefined
   const format = sourceOptions.format ? parseFormat(sourceOptions.format) : undefined
   return new sourceClass(assign({}, sourceOptions, {
     tileGrid: tileGrid,

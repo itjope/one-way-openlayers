@@ -27,8 +27,10 @@
   "homepage": "https://github.com/itjope/one-way-openlayers#readme",
   "dependencies": {
     "diff-json": "^0.1.11",
+    "fast-json-patch": "^1.1.8",
     "lodash": "^4.17.4",
     "ol": "^4.0.0-beta.1",
+    "ol-mapbox-style": "^2.1.1",
     "proj4": "^2.3.17"
   },
   "devDependencies": {
@@ -42,8 +44,8 @@
     "html-webpack-plugin": "^2.28.0",
     "jasmine-core": "^2.5.2",
     "karma": "^1.4.1",
+    "karma-chrome-launcher": "^2.0.0",
     "karma-jasmine": "^1.1.0",
-    "karma-phantomjs-launcher": "^1.0.2",
     "karma-webpack": "^2.0.2",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.3.0"

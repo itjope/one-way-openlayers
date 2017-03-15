@@ -11,7 +11,9 @@ export type Format = {
 export type Source = {
   'type': 'BingMaps' | 'CartoDB' | 'Cluster' | 'Image' | 'ImageArcGISRest' | 'ImageCanvas' | 'ImageMapGuide' | 'ImageStatic' | 'ImageVector' | 'ImageWMS' | 'OSM' | 'Raster' | 'Source' | 'Stamen' | 'Tile' | 'TileArcGISRest' | 'TileDebug' | 'TileImage' | 'TileJSON' | 'TileUTFGrid' | 'TileWMS' | 'UrlTile' | 'Vector' | 'VectorTile' | 'WMTS' | 'XYZ' | 'Zoomify',
   format: Format,
-  data?: ?Object
+  data?: ?Object,
+  tileGrid?: ?Object,
+  styleUrl?: ?string
 }
 
 export type VectorLayer = {

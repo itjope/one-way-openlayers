@@ -1,7 +1,9 @@
 // @flow
 import GeoJSON from 'ol/format/geojson'
+import { applyStyle } from 'ol-mapbox-style'
 
 import changesets from 'diff-json'
+// import jsonpatch from 'fast-json-patch'
 import parseLayer from './parseLayer'
 
 import type {Layer, Change, Diff, Map, CRS} from './types'
@@ -60,12 +62,22 @@ const attachVectorData = (olLayer: Object, geoJSON: ?Object, projection: Object)
 
 const addLayer = (map: Map) => (layer: Layer): void => {
   const olLayer = parseLayer(layer)
+  if (layer.type === 'VectorTile' && layer.source.styleUrl) {
+    fetch(layer.source.styleUrl).then(function(response) {
+      response.json().then(function(glStyle) {
+        applyStyle(olLayer, glStyle, 'openmaptiles').then(function() {
+          map.addLayer(olLayer)
+        })
+      })
+    })
+  } else {
+    if (isVectorDataLayer(layer)) {
+      attachVectorData(olLayer, layer.source.data, map.getView().getProjection())
+    }
 
-  if (isVectorDataLayer(layer)) {
-    attachVectorData(olLayer, layer.source.data, map.getView().getProjection())
+    map.addLayer(olLayer)
   }
 
-  map.addLayer(olLayer)
 }
 
 const removeLayers = (map: Map, layers: Layer[], diff: Diff): void => {
@@ -122,7 +134,7 @@ const renderLayers = (map: Map, prevLayers: Layer[], nextLayers: Layer[]): void 
     removeLayers(map, nextLayers, diff)
     addLayers(map, nextLayers, diff)
   }
-
+  // const patches = jsonpatch.compare (prevLayers, nextLayers)
   const diffs: Diff[] = changesets.diff(prevLayers, nextLayers)
 
   diffs

@@ -10,7 +10,7 @@ const parseWebpackConfig = (config) => {
 
 module.exports = function(config) {
   config.set({
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
     files: [
       {pattern: 'test/*.test.js', watched: false},
       {pattern: 'test/**/*.test.js', watched: false}
