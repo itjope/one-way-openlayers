@@ -42,7 +42,7 @@ This example will render a map with one tiled layer into a the body element and 
 
 ## Installation
 
-`npm install github:itjope/one-way-openlayers --save`
+`npm install one-way-openlayers --save`
 
 ## Development
 
