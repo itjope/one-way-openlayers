@@ -1,6 +1,6 @@
 {
   "name": "one-way-openlayers",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "One way dataflow wrapper for OpenLayers maps",
   "main": "lib/index.js",
   "scripts": {
@@ -8,8 +8,7 @@
     "start": "webpack-dev-server --watch --inline",
     "flow": "./node_modules/flow-bin/cli.js",
     "deploy": "babel src --presets babel-preset-es2015 --out-dir lib",
-    "ol-babelify": "babel ../../node_modules/ol --presets babel-preset-es2015 --out-dir ../../node_modules/ol",
-    "postinstall": "npm run deploy && if test -d ../../node_modules/ol; then npm run ol-babelify; fi "
+    "postinstall": "npm run deploy"
   },
   "repository": {
     "type": "git",
@@ -29,8 +28,7 @@
     "diff-json": "^0.1.11",
     "fast-json-patch": "^1.1.8",
     "lodash": "^4.17.4",
-    "ol": "^4.0.0-beta.1",
-    "ol-mapbox-style": "^2.1.1",
+    "openlayers": "^4.0.1",
     "proj4": "^2.3.17"
   },
   "devDependencies": {

@@ -1,7 +1,9 @@
 import OneWayOpenLayers from '../src'
-import View from 'ol/view'
+import ol from 'openlayers'
 
 import noViewConfig from './configs/noView'
+
+const View = ol.View
 
 describe("Render view", function() {
   it("Should render defalt view if missing in props", () => {

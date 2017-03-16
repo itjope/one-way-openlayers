@@ -1,9 +1,10 @@
+import ol from 'openlayers'
 import OneWayOpenLayers from '../src'
-import XYZ from 'ol/source/xyz'
-import VectorTile from 'ol/source/vectortile'
-
 import xyzConfig  from './configs/xyz'
 import vectorTileConfig from './configs/vectorTile'
+
+const XYZ = ol.source.XYZ
+const VectorTile = ol.source.VectorTile
 
 describe("Render source", function() {
   it("Should render a xyz source", function() {

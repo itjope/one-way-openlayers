@@ -1,9 +1,10 @@
 // @flow
+import ol from 'openlayers'
 
 import forEach from 'lodash/forEach'
 import changesets from 'diff-json'
 import type {Change, Diff, Events, Map, EventReference, MapOfEventReferences} from './types'
-import OLObservable from 'ol/observable'
+const OLObservable = ol.observable
 
 const registerEvent = (map: Map, eventRefsStore: MapOfEventReferences, eventName: string, eventFunc: Function): void => {
   eventRefsStore[eventName] = map.on(eventName, eventFunc)

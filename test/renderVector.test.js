@@ -1,8 +1,10 @@
+import ol from 'openlayers'
 import assign from 'lodash/assign'
 import OneWayOpenLayers from '../src'
-import VectorSource from 'ol/source/vector'
 import vectorConfig  from './configs/vectorData'
 import vectorDataWithTwoFeaturesConfig  from './configs/vectorDataWithTwoFeatures'
+
+const VectorSource = ol.source.Vector
 
 describe("Render vector", function() {
   it("Should render a vector source", function() {

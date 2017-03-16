@@ -1,6 +1,7 @@
-import OneWayOpenLayers from '../src'
-import OLProj from 'ol/proj'
+import ol from 'openlayers'
 
+import OneWayOpenLayers from '../src'
+const OLProj = ol.proj
 
 describe("Projections", function() {
   it("Should have proj4 custom projections", () => {

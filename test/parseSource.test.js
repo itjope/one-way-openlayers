@@ -1,8 +1,10 @@
+import ol from 'openlayers'
 import OneWayOpenLayers from '../src'
 import parseSource from '../src/parseSource'
-import XYZ from 'ol/source/xyz'
-import ImageWMS from 'ol/source/imagewms'
 import imageWmsConfig from './configs/imageWms'
+
+const XYZ = ol.source.XYZ
+const ImageWMS = ol.source.ImageWMS
 
 describe("parseSource", function() {
   const oneWayOpenLayers = OneWayOpenLayers()
