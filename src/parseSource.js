@@ -1,16 +1,19 @@
 // @flow
+import ol from 'openlayers'
+
 import assign from 'lodash/assign'
 import type {Source} from './types'
-import XYZ from 'ol/source/xyz'
-import TileGrid from 'ol/tilegrid/tilegrid'
-import TileWMS from 'ol/source/tilewms'
-import ImageWMS from 'ol/source/imagewms'
-import TileImage from 'ol/source/tileimage'
-import VectorTile from 'ol/source/vectortile'
-import Vector from 'ol/source/vector'
 
 import parseFormat from './parseFormat'
 import parseTileGrid from './parseTileGrid'
+
+const XYZ = ol.source.XYZ
+const TileGrid = ol.tilegrid.TileGrid
+const TileWMS = ol.source.TileWMS
+const ImageWMS = ol.source.ImageWMS
+const TileImage = ol.source.TileImage
+const VectorTile = ol.source.VectorTile
+const Vector = ol.source.Vector
 
 const sourceCreator = (sourceOptions: Source): Function => (sourceClass: Class<*>): Object => {
   const tileGrid = sourceOptions.tileGrid ? parseTileGrid(sourceOptions.tileGrid) : undefined

@@ -1,10 +1,12 @@
+import ol from 'openlayers'
 import OneWayOpenLayers from '../src'
-import View from 'ol/view'
 import cloneDeep from 'lodash/cloneDeep'
 
 import xyzConfig  from './configs/xyz'
 import noViewConfig from './configs/noView'
 import threeLayersConfig from './configs/threeLayers'
+
+const View = ol.View
 
 describe("Render layer", function() {
   it("Should add layers", () => {

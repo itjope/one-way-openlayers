@@ -1,11 +1,13 @@
 // @flow
+import ol from 'openlayers'
+
 import type { Layer } from './types'
 import assign from 'lodash/assign'
 import parseSource from './parseSource'
-import Tile from 'ol/layer/tile'
-import Vector from 'ol/layer/vector'
-import Image from 'ol/layer/image'
-import VectorTile from 'ol/layer/vectortile'
+const Tile =  ol.layer.Tile
+const Vector = ol.layer.Vector
+const Image = ol.layer.Image
+const VectorTile = ol.layer.VectorTile
 
 const layerCreator = (layerOptions: Layer): Function => (layerClass: Class<*>): Object => {
   return new layerClass(assign({}, layerOptions, {

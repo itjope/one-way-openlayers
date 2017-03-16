@@ -2,15 +2,18 @@
 import proj4 from 'proj4'
 import cloneDeep from 'lodash/cloneDeep'
 import assign from 'lodash/assign'
-import OLMap from 'ol/map'
-import OLView from 'ol/view'
-import OLProj from 'ol/proj'
+
+import ol from 'openlayers'
 import proj4Defs from './proj4Definitions'
 import renderLayers from './renderLayers'
 import renderView from './renderView'
 import updateEvents from './updateEvents'
 
 import type {Options, Props, State, View, Layer, Map, MapOfEventReferences} from './types'
+
+const OLMap = ol.Map
+const OLView = ol.View
+const OLProj = ol.proj
 
 proj4.defs(proj4Defs)
 OLProj.setProj4(proj4)

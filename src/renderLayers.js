@@ -1,12 +1,13 @@
 // @flow
-import GeoJSON from 'ol/format/geojson'
-import { applyStyle } from 'ol-mapbox-style'
+import ol from 'openlayers'
 
 import changesets from 'diff-json'
 // import jsonpatch from 'fast-json-patch'
 import parseLayer from './parseLayer'
 
 import type {Layer, Change, Diff, Map, CRS} from './types'
+
+const GeoJSON = ol.format.GeoJSON
 
 const getDefaultDataProjection = () => 'EPSG:4326'
 
@@ -62,22 +63,12 @@ const attachVectorData = (olLayer: Object, geoJSON: ?Object, projection: Object)
 
 const addLayer = (map: Map) => (layer: Layer): void => {
   const olLayer = parseLayer(layer)
-  if (layer.type === 'VectorTile' && layer.source.styleUrl) {
-    fetch(layer.source.styleUrl).then(function(response) {
-      response.json().then(function(glStyle) {
-        applyStyle(olLayer, glStyle, 'openmaptiles').then(function() {
-          map.addLayer(olLayer)
-        })
-      })
-    })
-  } else {
-    if (isVectorDataLayer(layer)) {
-      attachVectorData(olLayer, layer.source.data, map.getView().getProjection())
-    }
 
-    map.addLayer(olLayer)
+  if (isVectorDataLayer(layer)) {
+    attachVectorData(olLayer, layer.source.data, map.getView().getProjection())
   }
 
+  map.addLayer(olLayer)
 }
 
 const removeLayers = (map: Map, layers: Layer[], diff: Diff): void => {
