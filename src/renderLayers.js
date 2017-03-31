@@ -61,7 +61,7 @@ const attachVectorData = (olLayer: Object, geoJSON: ?Object, projection: Object)
   olLayer.getSource().addFeatures(features)
 }
 
-const addLayer = (map: Map) => (layer: Layer): void => {
+export const addLayer = (map: Map) => (layer: Layer): Object => {
   const olLayer = parseLayer(layer)
 
   if (isVectorDataLayer(layer)) {
@@ -69,6 +69,8 @@ const addLayer = (map: Map) => (layer: Layer): void => {
   }
 
   map.addLayer(olLayer)
+
+  return olLayer
 }
 
 const removeLayers = (map: Map, layers: Layer[], diff: Diff): void => {

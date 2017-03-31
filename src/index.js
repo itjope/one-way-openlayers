@@ -5,9 +5,10 @@ import assign from 'lodash/assign'
 
 import ol from 'openlayers'
 import proj4Defs from './proj4Definitions'
-import renderLayers from './renderLayers'
+import renderLayers, {addLayer} from './renderLayers'
 import renderView from './renderView'
 import updateEvents from './updateEvents'
+
 
 import type {Options, Props, State, View, Layer, Map, MapOfEventReferences} from './types'
 
@@ -62,7 +63,8 @@ const OneWayOpenLayers = (options: Options) => {
   return {
     render,
     getMap,
-    getEvents
+    getEvents,
+    addLayer: addLayer(state.map)
   }
 }
 
