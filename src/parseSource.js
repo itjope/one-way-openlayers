@@ -14,6 +14,7 @@ const ImageWMS = ol.source.ImageWMS
 const TileImage = ol.source.TileImage
 const VectorTile = ol.source.VectorTile
 const Vector = ol.source.Vector
+const WMTS = ol.source.WMTS
 
 const sourceCreator = (sourceOptions: Source): Function => (sourceClass: Class<*>): Object => {
   const tileGrid = sourceOptions.tileGrid ? parseTileGrid(sourceOptions.tileGrid) : undefined
@@ -39,6 +40,8 @@ const parseSource = (sourceOptions: Source): Object => {
       return createSource(VectorTile)
     case 'Vector':
       return createSource(Vector)
+    case 'WMTS':
+      return createSource(WMTS)
     default:
       console.warn('No source parser found for', sourceOptions.type)
       return {}
