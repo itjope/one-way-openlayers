@@ -13,7 +13,8 @@ export type Source = {
   format: Format,
   data?: ?Object,
   tileGrid?: ?Object,
-  styleUrl?: ?string
+  styleUrl?: ?string,
+  crs: CRS
 }
 
 export type VectorLayer = {
@@ -121,4 +122,4 @@ export type CRS = {
   properties: {
     code: number
   }
-}
+} | string

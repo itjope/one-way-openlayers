@@ -12,26 +12,33 @@ const GeoJSON = ol.format.GeoJSON
 const getDefaultDataProjection = () => 'EPSG:4326'
 
 const getProjectionFromCRS = (crs: CRS) => {
-  if (crs.type && crs.properties && crs.properties.code) {
-    return `${crs.type}:${crs.properties.code}`
+  if (typeof crs === 'string') {
+    return crs
+  } else if (crs.type && crs.properties && crs.properties.code) {
+    return crs.type + ':' + crs.properties.code;
   } else {
     console.warn(crs, 'Is an invalid CRS definition. Example of valid definition: ', {
       'type': 'EPSG',
       'properties': {
-         'code': 4326
+        'code': 4326
       }
-    })
+    });
     return getDefaultDataProjection()
   }
 }
 
-const getFeaturesFromGeoJson = (geoJson: ?Object, featureProjection: string | Object): Object[] => {
+const getFeaturesFromGeoJson = (geoJson: ?Object, featureProjection: string | Object, dataProjection?: CRS): Object[] => {
   if (!geoJson) return []
   const format = new GeoJSON()
-
+  let featureDataProjection = getDefaultDataProjection()
+  if (dataProjection) {
+    featureDataProjection = getProjectionFromCRS(dataProjection)
+  } else if (geoJson.crs) {
+    featureDataProjection = getProjectionFromCRS(geoJson.crs)
+  }
   return format.readFeatures(geoJson, {
     featureProjection: featureProjection,
-    dataProjection: geoJson.crs ? getProjectionFromCRS(geoJson.crs) : getDefaultDataProjection()
+    dataProjection: featureDataProjection
   })
 
 }
@@ -56,8 +63,8 @@ const isVectorDataLayer = (layer: Layer): boolean => {
   }
 }
 
-const attachVectorData = (olLayer: Object, geoJSON: ?Object, projection: Object): void => {
-  const features = getFeaturesFromGeoJson(geoJSON, projection)
+const attachVectorData = (olLayer: Object, geoJSON: ?Object, projection: Object, dataProjection?: CRS): void => {
+  const features = getFeaturesFromGeoJson(geoJSON, projection, dataProjection)
   olLayer.getSource().addFeatures(features)
 }
 
@@ -65,7 +72,7 @@ export const addLayer = (map: Map) => (layer: Layer): Object => {
   const olLayer = parseLayer(layer)
 
   if (isVectorDataLayer(layer)) {
-    attachVectorData(olLayer, layer.source.data, map.getView().getProjection())
+    attachVectorData(olLayer, layer.source.data, map.getView().getProjection(), layer.source.crs)
   }
 
   map.addLayer(olLayer)
@@ -106,7 +113,7 @@ const updateLayer = (map: Map, layer: Layer, index: number) => {
   const olLayer = parseLayer(layer)
 
   if (isVectorDataLayer(layer)) {
-    attachVectorData(olLayer, layer.source.data, map.getView().getProjection())
+    attachVectorData(olLayer, layer.source.data, map.getView().getProjection(), layer.source.crs)
   }
   olLayers.removeAt(index)
   olLayers.insertAt(index, olLayer)
