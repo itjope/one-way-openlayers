@@ -10,7 +10,9 @@
     "deploy": "babel src --presets babel-preset-es2015 --out-dir lib",
     "prepublish": "npm run deploy"
   },
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/itjope/one-way-openlayers.git"
@@ -29,7 +31,7 @@
     "diff-json": "^0.1.11",
     "fast-json-patch": "^1.1.8",
     "lodash": "^4.17.4",
-    "openlayers": "^4.0.1",
+    "openlayers": "^4.2.0",
     "proj4": "^2.3.17"
   },
   "devDependencies": {
